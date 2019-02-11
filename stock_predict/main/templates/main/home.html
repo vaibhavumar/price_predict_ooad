@@ -1,0 +1,23 @@
+{% extends 'main/all_page.html' %}
+
+{% block content %}
+	<h5>Predict stock closing prices</h5>
+	<form method="POST">
+		{% csrf_token %}
+		{{ form }}
+		<button class="btn" type="submit" onclick="modelRunning()">Predict</button>
+		<script>
+			function modelRunning(){
+				M.toast({html: "Model Running. PLEASE WAIT...", classes: 'blue rounded', displayLength: 5000});
+			}
+		</script>
+	</form>
+{% endblock %}
+
+{% block p_result %}
+	{% if date %}
+	<h5>Prediction Result for {{date}}:</h5>
+	<p>Predicted Price: {{price}}</p>
+	<p>Actual Price: {{actual}}</p>
+	{% endif %}
+{% endblock %}
